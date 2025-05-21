@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Venv
+venv/
+.venv
+.env
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Systemd logs (если добавишь автозапуск)
+*.service
+
+# Backup/editor files
+*~
+*.swp
+*.bak
