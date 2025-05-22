@@ -15,7 +15,7 @@ from telegram import Update, Bot
 from telegram.ext import (
     Application,
     ApplicationBuilder,
-    ContextTypes,
+    ContextTypes#,
     MessageHandler,
     filters,
 )
@@ -42,8 +42,11 @@ if not OWM_API_KEY:
 if not CHAT_IDS:
     raise SystemExit("⛔️ Укажите TELEGRAM_CHAT_IDS или TELEGRAM_CHAT_ID в .env")
 
-# ──────────────── Мат‑фильтр ────────────────
-
+# ──────────────── (Необязательно) Мат‑фильтр ────────────────
+# Чтобы снова включить фильтр мата:
+#   1. раскомментируйте импорт MessageHandler, filters выше
+#   2. удалите тройные кавычки из блока ниже
+"""
 def load_bad_regex() -> re.Pattern:
     path = Path(BAD_WORDS_FILE)
     if not path.is_file():
@@ -61,7 +64,7 @@ BAD_REGEX = load_bad_regex()
 
 def censor(text: str) -> str:
     return BAD_REGEX.sub(lambda m: "*" * len(m.group(0)), text)
-
+"""
 # ──────────────── Погода ────────────────
 
 def fetch_weather() -> str:
