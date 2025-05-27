@@ -30,6 +30,18 @@ pip install -r requirements.txt        # python-telegram-bot, python-dotenv, req
 cp .env.example .env                   # и заполните токены
 python tgbot_weather.py                # запуск
 
+#  Проверь вручную, что бот стартует
+python weather_bot.py --once        # без sudo
+
+#  Исправь/проверь сервис
+
+sudo nano /etc/systemd/system/weatherbot.service
+
+# должно быть:
+
+User=student
+
+ExecStart=/home/student/tgbot/venv/bin/python /home/student/tgbot/weather_bot.py
 
 sudo systemctl daemon-reload
 
@@ -38,3 +50,5 @@ sudo systemctl restart weatherbot
 systemctl status weatherbot         # должно быть active (running)
 
 journalctl -u weatherbot -f         # «хвост» лога
+
+sudo systemctl status weatherbot -n 10
